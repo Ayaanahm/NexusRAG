@@ -1,0 +1,1 @@
+The textbook hybrid-search recipe lost to plain keyword search on 5,173 held-out questions. So I tuned it: NexusRAG answers questions about your docs with citations, and beats keyword search by 2.6 MRR points. Code and benchmarks: https://github.com/Ayaanahm/NexusRAG
