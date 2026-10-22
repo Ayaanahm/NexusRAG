@@ -1,0 +1,178 @@
+{
+  "dataset": "fastapi",
+  "chunks": 2411,
+  "questions": 80,
+  "relevance_level": "doc",
+  "embedder": "BAAI/bge-small-en-v1.5",
+  "index_build_seconds": 600.54,
+  "configs": {
+    "bm25 (plain tokenizer)": {
+      "recall@1": 0.6312,
+      "hit@1": 0.6625,
+      "recall@3": 0.9062,
+      "hit@3": 0.925,
+      "recall@5": 0.9313,
+      "hit@5": 0.95,
+      "recall@10": 0.9688,
+      "hit@10": 0.9875,
+      "recall@20": 0.9688,
+      "hit@20": 0.9875,
+      "mrr@10": 0.7925,
+      "ndcg@10": 0.8307,
+      "latency_ms_p50": 0.251,
+      "latency_ms_p95": 0.407
+    },
+    "bm25 (code-aware tokenizer)": {
+      "recall@1": 0.65,
+      "hit@1": 0.675,
+      "recall@3": 0.925,
+      "hit@3": 0.9375,
+      "recall@5": 0.9313,
+      "hit@5": 0.95,
+      "recall@10": 0.9688,
+      "hit@10": 0.9875,
+      "recall@20": 0.9688,
+      "hit@20": 0.9875,
+      "mrr@10": 0.8026,
+      "ndcg@10": 0.8413,
+      "latency_ms_p50": 0.238,
+      "latency_ms_p95": 0.323
+    },
+    "dense (BAAI/bge-small-en-v1.5)": {
+      "recall@1": 0.7312,
+      "hit@1": 0.7625,
+      "recall@3": 0.8938,
+      "hit@3": 0.9,
+      "recall@5": 0.95,
+      "hit@5": 0.95,
+      "recall@10": 0.975,
+      "hit@10": 0.975,
+      "recall@20": 0.975,
+      "hit@20": 0.975,
+      "mrr@10": 0.8399,
+      "ndcg@10": 0.8722,
+      "latency_ms_p50": 20.099,
+      "latency_ms_p95": 34.204
+    },
+    "hybrid (RRF, k=60)": {
+      "recall@1": 0.7,
+      "hit@1": 0.7375,
+      "recall@3": 0.9375,
+      "hit@3": 0.95,
+      "recall@5": 0.9688,
+      "hit@5": 0.975,
+      "recall@10": 0.975,
+      "hit@10": 0.975,
+      "recall@20": 0.9812,
+      "hit@20": 0.9875,
+      "mrr@10": 0.8438,
+      "ndcg@10": 0.8736,
+      "latency_ms_p50": 23.908,
+      "latency_ms_p95": 36.925
+    },
+    "hybrid + rerank (BAAI/bge-reranker-base)": {
+      "recall@1": 0.7063,
+      "hit@1": 0.7375,
+      "recall@3": 0.9187,
+      "hit@3": 0.9375,
+      "recall@5": 0.9437,
+      "hit@5": 0.95,
+      "recall@10": 0.9812,
+      "hit@10": 0.9875,
+      "recall@20": 0.9812,
+      "hit@20": 0.9875,
+      "mrr@10": 0.839,
+      "ndcg@10": 0.8721,
+      "latency_ms_p50": 9979.978,
+      "latency_ms_p95": 12072.411
+    }
+  },
+  "weighted_fusion_sweep": {
+    "0.2": {
+      "mrr@10": 0.8191,
+      "hit@5": 0.9625
+    },
+    "0.4": {
+      "mrr@10": 0.8494,
+      "hit@5": 0.9625
+    },
+    "0.6": {
+      "mrr@10": 0.8528,
+      "hit@5": 0.9625
+    },
+    "0.8": {
+      "mrr@10": 0.8476,
+      "hit@5": 0.95
+    }
+  },
+  "hybrid_vs_best_single": {
+    "mrr@10": {
+      "vs": "dense (BAAI/bge-small-en-v1.5)",
+      "diff": 0.0039,
+      "ci95": [
+        -0.0442,
+        0.0531
+      ]
+    },
+    "hit@5": {
+      "vs": "dense (BAAI/bge-small-en-v1.5)",
+      "diff": 0.025,
+      "ci95": [
+        0.0,
+        0.0625
+      ]
+    }
+  },
+  "by_question_type": {
+    "identifier": {
+      "bm25 (plain tokenizer)": {
+        "mrr@10": 0.9042,
+        "hit@5": 1.0
+      },
+      "bm25 (code-aware tokenizer)": {
+        "mrr@10": 0.8917,
+        "hit@5": 1.0
+      },
+      "dense (BAAI/bge-small-en-v1.5)": {
+        "mrr@10": 0.95,
+        "hit@5": 1.0
+      },
+      "hybrid (RRF, k=60)": {
+        "mrr@10": 0.9375,
+        "hit@5": 1.0
+      },
+      "hybrid + rerank (BAAI/bge-reranker-base)": {
+        "mrr@10": 0.9625,
+        "hit@5": 1.0
+      }
+    },
+    "natural": {
+      "bm25 (plain tokenizer)": {
+        "mrr@10": 0.6809,
+        "hit@5": 0.9
+      },
+      "bm25 (code-aware tokenizer)": {
+        "mrr@10": 0.7135,
+        "hit@5": 0.9
+      },
+      "dense (BAAI/bge-small-en-v1.5)": {
+        "mrr@10": 0.7298,
+        "hit@5": 0.9
+      },
+      "hybrid (RRF, k=60)": {
+        "mrr@10": 0.75,
+        "hit@5": 0.95
+      },
+      "hybrid + rerank (BAAI/bge-reranker-base)": {
+        "mrr@10": 0.7155,
+        "hit@5": 0.9
+      }
+    }
+  },
+  "environment": {
+    "python": "3.13.16",
+    "machine": "x86_64",
+    "processor_count": 2,
+    "numpy": "2.5.4"
+  }
+}

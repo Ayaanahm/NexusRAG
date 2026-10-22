@@ -1,0 +1,117 @@
+{
+  "dataset": "squad",
+  "chunks": 2067,
+  "questions": 10570,
+  "relevance_level": "chunk",
+  "embedder": "BAAI/bge-small-en-v1.5",
+  "index_build_seconds": 361.36,
+  "configs": {
+    "bm25 (plain tokenizer)": {
+      "recall@1": 0.7926,
+      "hit@1": 0.7926,
+      "recall@3": 0.9106,
+      "hit@3": 0.9106,
+      "recall@5": 0.9386,
+      "hit@5": 0.9386,
+      "recall@10": 0.9625,
+      "hit@10": 0.9625,
+      "recall@20": 0.9772,
+      "hit@20": 0.9772,
+      "mrr@10": 0.8559,
+      "ndcg@10": 0.8822,
+      "latency_ms_p50": 0.224,
+      "latency_ms_p95": 0.34
+    },
+    "bm25 (code-aware tokenizer)": {
+      "recall@1": 0.7921,
+      "hit@1": 0.7921,
+      "recall@3": 0.9102,
+      "hit@3": 0.9102,
+      "recall@5": 0.9387,
+      "hit@5": 0.9387,
+      "recall@10": 0.9631,
+      "hit@10": 0.9631,
+      "recall@20": 0.9774,
+      "hit@20": 0.9774,
+      "mrr@10": 0.8556,
+      "ndcg@10": 0.8821,
+      "latency_ms_p50": 0.239,
+      "latency_ms_p95": 0.416
+    },
+    "dense (BAAI/bge-small-en-v1.5)": {
+      "recall@1": 0.6669,
+      "hit@1": 0.6669,
+      "recall@3": 0.8365,
+      "hit@3": 0.8365,
+      "recall@5": 0.8883,
+      "hit@5": 0.8883,
+      "recall@10": 0.9353,
+      "hit@10": 0.9353,
+      "recall@20": 0.964,
+      "hit@20": 0.964,
+      "mrr@10": 0.7617,
+      "ndcg@10": 0.8041,
+      "latency_ms_p50": 23.931,
+      "latency_ms_p95": 40.402
+    },
+    "hybrid (RRF, k=60)": {
+      "recall@1": 0.7815,
+      "hit@1": 0.7815,
+      "recall@3": 0.9181,
+      "hit@3": 0.9181,
+      "recall@5": 0.9502,
+      "hit@5": 0.9502,
+      "recall@10": 0.9758,
+      "hit@10": 0.9758,
+      "recall@20": 0.9893,
+      "hit@20": 0.9893,
+      "mrr@10": 0.8543,
+      "ndcg@10": 0.8843,
+      "latency_ms_p50": 23.889,
+      "latency_ms_p95": 39.61
+    }
+  },
+  "weighted_fusion_sweep": {
+    "0.2": {
+      "mrr@10": 0.8742,
+      "hit@5": 0.9518
+    },
+    "0.4": {
+      "mrr@10": 0.8848,
+      "hit@5": 0.9606
+    },
+    "0.6": {
+      "mrr@10": 0.867,
+      "hit@5": 0.9554
+    },
+    "0.8": {
+      "mrr@10": 0.8247,
+      "hit@5": 0.9289
+    }
+  },
+  "hybrid_vs_best_single": {
+    "mrr@10": {
+      "vs": "bm25 (code-aware tokenizer)",
+      "diff": -0.0013,
+      "ci95": [
+        -0.0057,
+        0.0035
+      ]
+    },
+    "hit@5": {
+      "vs": "bm25 (code-aware tokenizer)",
+      "diff": 0.0115,
+      "ci95": [
+        0.0071,
+        0.0158
+      ]
+    }
+  },
+  "by_question_type": {},
+  "environment": {
+    "python": "3.13.16",
+    "machine": "x86_64",
+    "processor_count": 2,
+    "numpy": "2.5.4"
+  }
+}

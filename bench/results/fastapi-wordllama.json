@@ -1,0 +1,154 @@
+{
+  "dataset": "fastapi",
+  "chunks": 2411,
+  "questions": 80,
+  "relevance_level": "doc",
+  "embedder": "wordllama-l2-supercat-256",
+  "index_build_seconds": 10.36,
+  "configs": {
+    "bm25 (plain tokenizer)": {
+      "recall@1": 0.6312,
+      "hit@1": 0.6625,
+      "recall@3": 0.9062,
+      "hit@3": 0.925,
+      "recall@5": 0.9313,
+      "hit@5": 0.95,
+      "recall@10": 0.9688,
+      "hit@10": 0.9875,
+      "recall@20": 0.9688,
+      "hit@20": 0.9875,
+      "mrr@10": 0.7925,
+      "ndcg@10": 0.8307,
+      "latency_ms_p50": 0.236,
+      "latency_ms_p95": 0.435
+    },
+    "bm25 (code-aware tokenizer)": {
+      "recall@1": 0.65,
+      "hit@1": 0.675,
+      "recall@3": 0.925,
+      "hit@3": 0.9375,
+      "recall@5": 0.9313,
+      "hit@5": 0.95,
+      "recall@10": 0.9688,
+      "hit@10": 0.9875,
+      "recall@20": 0.9688,
+      "hit@20": 0.9875,
+      "mrr@10": 0.8026,
+      "ndcg@10": 0.8413,
+      "latency_ms_p50": 0.269,
+      "latency_ms_p95": 0.444
+    },
+    "dense (wordllama-l2-supercat-256)": {
+      "recall@1": 0.5312,
+      "hit@1": 0.5625,
+      "recall@3": 0.775,
+      "hit@3": 0.7875,
+      "recall@5": 0.8375,
+      "hit@5": 0.8375,
+      "recall@10": 0.9125,
+      "hit@10": 0.9125,
+      "recall@20": 0.925,
+      "hit@20": 0.925,
+      "mrr@10": 0.6817,
+      "ndcg@10": 0.7349,
+      "latency_ms_p50": 0.293,
+      "latency_ms_p95": 0.594
+    },
+    "hybrid (RRF, k=60)": {
+      "recall@1": 0.6188,
+      "hit@1": 0.6375,
+      "recall@3": 0.8625,
+      "hit@3": 0.8875,
+      "recall@5": 0.9437,
+      "hit@5": 0.95,
+      "recall@10": 0.9812,
+      "hit@10": 1.0,
+      "recall@20": 0.9812,
+      "hit@20": 1.0,
+      "mrr@10": 0.7801,
+      "ndcg@10": 0.8279,
+      "latency_ms_p50": 0.724,
+      "latency_ms_p95": 1.001
+    }
+  },
+  "weighted_fusion_sweep": {
+    "0.2": {
+      "mrr@10": 0.812,
+      "hit@5": 0.975
+    },
+    "0.4": {
+      "mrr@10": 0.8029,
+      "hit@5": 0.9625
+    },
+    "0.6": {
+      "mrr@10": 0.7425,
+      "hit@5": 0.9375
+    },
+    "0.8": {
+      "mrr@10": 0.7194,
+      "hit@5": 0.875
+    }
+  },
+  "hybrid_vs_best_single": {
+    "mrr@10": {
+      "vs": "bm25 (code-aware tokenizer)",
+      "diff": -0.0225,
+      "ci95": [
+        -0.085,
+        0.042
+      ]
+    },
+    "hit@5": {
+      "vs": "bm25 (code-aware tokenizer)",
+      "diff": 0.0,
+      "ci95": [
+        -0.0625,
+        0.0625
+      ]
+    }
+  },
+  "by_question_type": {
+    "identifier": {
+      "bm25 (plain tokenizer)": {
+        "mrr@10": 0.9042,
+        "hit@5": 1.0
+      },
+      "bm25 (code-aware tokenizer)": {
+        "mrr@10": 0.8917,
+        "hit@5": 1.0
+      },
+      "dense (wordllama-l2-supercat-256)": {
+        "mrr@10": 0.8396,
+        "hit@5": 0.95
+      },
+      "hybrid (RRF, k=60)": {
+        "mrr@10": 0.8833,
+        "hit@5": 1.0
+      }
+    },
+    "natural": {
+      "bm25 (plain tokenizer)": {
+        "mrr@10": 0.6809,
+        "hit@5": 0.9
+      },
+      "bm25 (code-aware tokenizer)": {
+        "mrr@10": 0.7135,
+        "hit@5": 0.9
+      },
+      "dense (wordllama-l2-supercat-256)": {
+        "mrr@10": 0.5239,
+        "hit@5": 0.725
+      },
+      "hybrid (RRF, k=60)": {
+        "mrr@10": 0.6769,
+        "hit@5": 0.9
+      }
+    }
+  },
+  "environment": {
+    "python": "3.13.16",
+    "machine": "x86_64",
+    "processor_count": 2,
+    "numpy": "2.5.4"
+  }
+}

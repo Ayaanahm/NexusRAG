@@ -1,0 +1,124 @@
+{
+  "embedder": "wordllama-l2-supercat-256",
+  "rrf_k": 60,
+  "split": "SQuAD v1.1 dev; tune = questions on even-numbered articles, test = odd-numbered",
+  "tune_questions": 5397,
+  "test_questions": 5173,
+  "sweep_on_tune": {
+    "0.0": {
+      "mrr@10": 0.8392,
+      "hit@5": 0.9339
+    },
+    "0.1": {
+      "mrr@10": 0.8287,
+      "hit@5": 0.9361
+    },
+    "0.2": {
+      "mrr@10": 0.8116,
+      "hit@5": 0.9287
+    },
+    "0.3": {
+      "mrr@10": 0.7996,
+      "hit@5": 0.9242
+    },
+    "0.4": {
+      "mrr@10": 0.7873,
+      "hit@5": 0.9174
+    },
+    "0.5": {
+      "mrr@10": 0.78,
+      "hit@5": 0.9118
+    },
+    "0.6": {
+      "mrr@10": 0.7672,
+      "hit@5": 0.9072
+    },
+    "0.8": {
+      "mrr@10": 0.7565,
+      "hit@5": 0.8944
+    },
+    "1.0": {
+      "mrr@10": 0.7521,
+      "hit@5": 0.887
+    }
+  },
+  "chosen_dense_weight": 0.0,
+  "squad_test": {
+    "bm25": {
+      "hit@1": 0.8175,
+      "hit@5": 0.9437,
+      "hit@10": 0.9654,
+      "mrr@10": 0.8727,
+      "ndcg@10": 0.8956
+    },
+    "rrf_equal": {
+      "hit@1": 0.7083,
+      "hit@5": 0.907,
+      "hit@10": 0.9511,
+      "mrr@10": 0.7935,
+      "ndcg@10": 0.8319
+    },
+    "rrf_tuned": {
+      "hit@1": 0.8175,
+      "hit@5": 0.9437,
+      "hit@10": 0.9654,
+      "mrr@10": 0.8727,
+      "ndcg@10": 0.8956
+    }
+  },
+  "squad_test_vs_bm25": {
+    "rrf_equal": {
+      "mrr@10_diff_vs_bm25": -0.0793,
+      "ci95": [
+        -0.087,
+        -0.0717
+      ]
+    },
+    "rrf_tuned": {
+      "mrr@10_diff_vs_bm25": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "fastapi_untuned_transfer": {
+    "bm25": {
+      "hit@1": 0.675,
+      "hit@5": 0.95,
+      "hit@10": 1.0,
+      "mrr@10": 0.8044,
+      "ndcg@10": 0.8455
+    },
+    "rrf_equal": {
+      "hit@1": 0.6375,
+      "hit@5": 0.95,
+      "hit@10": 1.0,
+      "mrr@10": 0.7801,
+      "ndcg@10": 0.8279
+    },
+    "rrf_tuned": {
+      "hit@1": 0.675,
+      "hit@5": 0.95,
+      "hit@10": 1.0,
+      "mrr@10": 0.8044,
+      "ndcg@10": 0.8455
+    }
+  },
+  "fastapi_vs_bm25": {
+    "rrf_equal": {
+      "mrr@10_diff_vs_bm25": -0.0243,
+      "ci95": [
+        -0.085,
+        0.0403
+      ]
+    },
+    "rrf_tuned": {
+      "mrr@10_diff_vs_bm25": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}
