@@ -102,7 +102,7 @@ Environment variables with the `NEXUS_` prefix (see `backend/nexusrag/config.py`
 
 | Variable | Default | |
 |---|---|---|
-| `NEXUS_EMBEDDER` | `fastembed:BAAI/bge-small-en-v1.5` | also `sentence-transformers:<model>`, or `wordllama` (bundled, fully offline, weaker) |
+| `NEXUS_EMBEDDER` | `fastembed:BAAI/bge-small-en-v1.5` | also `sentence-transformers:<model>`, or `wordllama` (fully offline, much weaker; `pip install -e ".[offline]"`) |
 | `NEXUS_VECTOR_STORE` | `memory` | `qdrant` or `pgvector` |
 | `NEXUS_RERANKER` | `none` | `fastembed:BAAI/bge-reranker-base`, `cross-encoder:<model>`, `cohere`, `claude` |
 | `NEXUS_FUSION` | `weighted` | `weighted` (normalised scores) or `rrf` (ranks) |
