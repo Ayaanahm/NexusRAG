@@ -81,7 +81,7 @@ class SentenceTransformerEmbedder:
         self._query_prefix = self.QUERY_PREFIXES.get(model_id, "")
 
     def embed_documents(self, texts: list[str]) -> np.ndarray:
-        return _normalise(self._model.encode(texts, batch_size=64, normalize_embeddings=True))
+        return _normalise(self._model.encode(texts, batch_size=16, normalize_embeddings=True))
 
     def embed_query(self, text: str) -> np.ndarray:
         return self.embed_documents([self._query_prefix + text])[0]
@@ -91,8 +91,12 @@ class FastEmbedEmbedder:
     """ONNX Runtime models via Qdrant's fastembed (no PyTorch), e.g.
     BAAI/bge-small-en-v1.5. Downloads the model from Hugging Face on first use."""
 
-    def __init__(self, model_id: str, threads: int | None = None) -> None:
+    # Memory grows with batch size x passage length: on the FastAPI docs, batches of
+    # 64 long passages peaked at 2.3 GB RSS, batches of 16 at 0.75 GB.
+    def __init__(self, model_id: str, threads: int | None = None, batch_size: int = 16) -> None:
         from fastembed import TextEmbedding
+
+        self.batch_size = batch_size
 
         self._model = TextEmbedding(model_id, threads=threads)
         self.name = model_id
@@ -103,7 +107,7 @@ class FastEmbedEmbedder:
     def embed_documents(self, texts: list[str]) -> np.ndarray:
         if not texts:
             return np.zeros((0, self.dim), dtype=np.float32)
-        return _normalise(np.stack(list(self._model.embed(texts, batch_size=64))))
+        return _normalise(np.stack(list(self._model.embed(texts, batch_size=self.batch_size))))
 
     def embed_query(self, text: str) -> np.ndarray:
         return self.embed_documents([self._query_prefix + text])[0]

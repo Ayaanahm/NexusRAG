@@ -60,7 +60,7 @@ class CorpusIndex:
         self.pos = {c.id: i for i, c in enumerate(self.chunks)}
         self.bm25 = BM25Index().fit([c.index_text for c in self.chunks])
 
-    def _embed_and_store(self, chunks: list[Chunk], batch: int = 1024) -> None:
+    def _embed_and_store(self, chunks: list[Chunk], batch: int = 256) -> None:
         for s in range(0, len(chunks), batch):
             part = chunks[s : s + batch]
             vecs = self.embedder.embed_documents([c.index_text for c in part])

@@ -62,7 +62,7 @@ class FastEmbedReranker:
     def rerank(self, query: str, chunks: list[Chunk]) -> list[tuple[Chunk, float]]:
         if not chunks:
             return []
-        scores = list(self._model.rerank(query, [c.index_text for c in chunks], batch_size=16))
+        scores = list(self._model.rerank(query, [c.index_text for c in chunks], batch_size=8))
         return sorted(zip(chunks, map(float, scores)), key=lambda x: x[1], reverse=True)
 
 
